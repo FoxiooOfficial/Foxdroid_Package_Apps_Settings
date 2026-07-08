@@ -1615,14 +1615,7 @@
     <string name="add_profile_dialog_title">צור פרופיל חדש</string>
     <string name="additional_options_title">אפשרויות נוספות</string>
     <string name="advanced_settings_title">מתקדם</string>
-    <string name="anonymous_learn_more">למד עוד</string>
-    <string name="anonymous_notification_desc">"אפשר או בטל סטטיסטיקות CyanogenMod"</string>
-    <string name="anonymous_statistics_summary">עזור לשפר את CyanogenMod על ידי שליחת סטטיסטיקות שימוש אנונימיות"</string>
-    <string name="anonymous_statistics_title">"סטטיסטיקות CyanogenMod"</string>
-    <string name="anonymous_statistics_warning">"אם אתה מאפשר את הסטטיסטיקות ישלחו נתוני שימוש אנונימיים אל
-        היוצרים של המוד כדי לחפש שימושים ייחודיים על פני מכשירים.. המידע שנשלח כולל אלמנט מייחד,
-        שלא מסכן את הפרטיות או את המידע האישי שלך. המידע נשלח כל תחילת הפעלה של המערכת.\n\nכדי לראות דוגמא של המידע שנשלח, לחץ על הצגת הנתונים."</string>
-    <string name="anonymous_statistics_warning_title">אודות</string>
+    
     <string name="backlight_summary">שנה רמות והגדרות מסנן</string>
     <string name="backlight_title">אור אחורי אוטומטי</string>
     <string name="build_date">תאריך בניה</string>
@@ -1674,7 +1667,6 @@
     <string name="duplicate_appgroup_name">שכפל את קבוצת השם של האפליקציה!</string>
     <string name="duplicate_profile_name">שכפל את שם הפורפיל!</string>
     <string name="edit_light_settings">ערוך הגדרות אור</string>
-    <string name="enable_reporting_title">אפשר דיווח</string>
     <string name="end_time_title">סיום</string>
     <string name="expanded_haptic_feedback_title">משוב ברטט</string>
     <string name="header_category_interface">ממשק</string>
@@ -1774,12 +1766,7 @@
     <string name="pref_volume_wake_summary">לחיצה על מקשי הווליום תעיר את המכשיר</string>
     <string name="pref_volume_wake_title">הערת לחצני ווליום</string>
     <string name="pref_zram_summary">דחיסת זיכרון עבור קיבולת וירטואלית מוגדלת (דורש אתחול מחדש)</string>
-    <string name="preview_carrier_title">חברת סלולר</string>
-    <string name="preview_country_title">מדינה</string>
-    <string name="preview_data_title">תצוגת נתונים</string>
-    <string name="preview_device_title">מכשיר</string>
-    <string name="preview_id_title">זיהוי ייחודי</string>
-    <string name="preview_version_title">גרסה</string>
+
     <string name="processor_summary">"שנה מושל CPU ומהירות שעון"</string>
     <string name="processor_title">מעבד</string>
     <string name="profile_add_app">הוסף אפליקציה</string>
@@ -1974,7 +1961,6 @@
     <string name="usb_mass_storage_summary">"אפשר אחסון USB נייד"</string>
     <string name="usb_mass_storage_title">"אחסון נייד"</string>
     <string name="vibrate_mode">מצב רטט</string>
-    <string name="view_stats_title">ראה סטטיסטיקות</string>
     <string name="volbtn_music_controls_summary">כשהמסך מכובה, לחיצה ארוכה על לחצני הווליום תגלוש בתוך שירים</string>
     <string name="volume_override_summary">נקבע ל</string>
     <string name="volume_ring_only_description">צלצולים</string>

@@ -2167,26 +2167,6 @@
     <!-- About device screen, list item summary. Takes the user to the screen about how to donate to the CyanogenMod Project. -->
     <string name="donate_settings_summary">""</string>
 
-    <!-- Anonymous Statistics #CM -->
-    <!-- About device screen, list item title. Takes the user to the screen about opting in or out of anonymous statistics. -->
-    <string name="anonymous_statistics_title">"Estadísticas CyanogenMod"</string>
-    <!-- About device screen, list item summary. Takes the user to the screen about opting in or out of anonymous statistics. -->
-    <string name="anonymous_statistics_summary">"Ayude a mejorar CyanogenMod mediante el envío anónimo de estadísticas"</string>
-    <string name="anonymous_statistics_warning_title">"Aviso"</string>
-    <string name="anonymous_statistics_warning">"Permitiendo la recopilación y envio de estadísticas de CyanogenMod autoriza el envio de información de carácter no personal a los desarrolladores de CyanogenMod para realizar un seguimiento de las instalaciones que realice en los dispositivos. La información enviada incluye un identificador único que no compromete su privacidad o su información personal. Esta información es enviada durante el arranque.\n\nPara ver un ejemplo de la información enviada, acceda al menú 'Previsualizar Datos' en ."</string>
-    <string name="enable_reporting_title">"Activar envío estadísticas"</string>
-    <string name="preview_data_title">"Previsualizar datos"</string>
-    <string name="view_stats_title">"Ver estadísticas"</string>
-    <string name="anonymous_learn_more">"Leer más"</string>
-    <!-- Anonymous Statistics - Notification -->
-    <string name="anonymous_notification_desc">"Activar ó desactivar estadísticas de CyanogenMod"</string>
-    <!-- Anonymous Statistics - Preview -->
-    <string name="preview_id_title">"Identificador único"</string>
-    <string name="preview_device_title">"Dispositivo"</string>
-    <string name="preview_version_title">"Versión"</string>
-    <string name="preview_country_title">"País"</string>
-    <string name="preview_carrier_title">"Operadora móvil"</string>
-
     <!-- About phone screen, Free memory info #CM -->
     <string name="mem_info">"Memoria"</string>
     <!-- About device screen, version of modification of Android. #CM -->

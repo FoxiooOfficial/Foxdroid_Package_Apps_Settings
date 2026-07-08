@@ -1888,31 +1888,6 @@
     <!-- About device screen, list item summary. Takes the user to the screen about how to donate to the CyanogenMod Project. -->
     <string name="donate_settings_summary">""</string>
 
-    <!-- Anonymous Statistics #CM -->
-    <!-- About device screen, list item title. Takes the user to the screen about opting in or out of anonymous statistics. -->
-    <string name="anonymous_statistics_title">Statystyki CyanogenMod</string>
-    <!-- About device screen, list item summary. Takes the user to the screen about opting in or out of anonymous statistics. -->
-    <string name="anonymous_statistics_summary">Pomóż sprawić, by CyanogenMod stał się lepszy, wysyłając anonimowe statystyki</string>
-    <string name="anonymous_statistics_warning_title">O statystykach</string>
-    <string name="anonymous_statistics_warning">Zezwolenie na anonimowe satystyki pozwala śledzić twórcom CyanogenMod ilość jego instalacji.
-        Przesyłane informacje zawierają unikatowy identyfikator urządzenia,
-        co nie narusza twojej prywatności ani danych. Informacje są przesyłane podczas każdego uruchamiania systemu.\n\nMożesz sprawdzić, jakie informacje są przysałne, używając opcji Podgląd danych.</string>
-    <string name="enable_reporting_title">Włącz raportowanie</string>
-    <string name="preview_data_title">Podgląd danych</string>
-    <string name="preview_data_summary">%s</string>
-    <string name="view_stats_title">Zobacz statystyki</string>
-    <string name="anonymous_learn_more">Dowiedz się więcej</string>
-
-    <!-- Anonymous Statistics - Notification -->
-    <string name="anonymous_notification_desc">Włącz/Wyłącz statystyki CyanogenMod</string>
-
-    <!-- Anonymous Statistics - Preview -->
-    <string name="preview_id_title">ID urządzenia</string>
-    <string name="preview_device_title">Urządzenie</string>
-    <string name="preview_version_title">Wersja oprogramowania</string>
-    <string name="preview_country_title">Kraj</string>
-    <string name="preview_carrier_title">Operator</string>
-
     <!--  Additional development settings #CM -->
     <!-- Setting checkbox title for Whether debugging should run over TCP/IP. -->
     <string name="adb_over_network">Debugowanie przez sieć</string>

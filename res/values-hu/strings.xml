@@ -1640,7 +1640,6 @@
     <string name="additional_system_update_settings_list_item_title" msgid="214987609894661992">"További rendszerfrissítések"</string>
 
     <!-- 20120420 -->
-    <string name="anonymous_notification_desc">CyanogenMod Statisztika engedélyezése/tiltása</string>
     <string name="custom_time">Egyéni</string>
     <string name="debug_intent_sender_label">Hibakeresés küldése</string>
     <string name="default_time">Normál</string>
@@ -1666,12 +1665,6 @@
     <string name="notification_light_phonelist_title">Telefon</string>
     <string name="notification_light_voicemail_title">Hangposta</string>
     <string name="ok">Ok</string>
-    <string name="picker_arrow">→</string>
-    <string name="preview_carrier_title">Szolgáltató</string>
-    <string name="preview_country_title">Ország kód</string>
-    <string name="preview_device_title">Eszköz</string>
-    <string name="preview_id_title">Egyedi azonosító</string>
-    <string name="preview_version_title">Verzió</string>
     <string name="profile_write_nfc_tag">NFC tag kiírása</string>
     <string name="profile_write_touch_tag">Válassza ki a kiírandó tag-ot</string>
     <string name="profile_write_success">Tag sikeresen kiírva</string>
@@ -2192,17 +2185,7 @@
     <string name="donate_settings_title">Támogatás</string>
     <!-- About device screen, list item summary. Takes the user to the screen about how to donate to the CyanogenMod Project. -->
     <string name="donate_settings_summary">""</string>
-    <!-- Anonymous Statistics #CM -->
-    <!-- About device screen, list item title. Takes the user to the screen about opting in or out of anonymous statistics. -->
-    <string name="anonymous_statistics_title">CyanogenMod Statisztika</string>
-    <string name="anonymous_statistics_summary">Az anonim statisztika gyűjtévésével javítani tudjuk a CyanogenMod rendszert</string>
-    <string name="anonymous_statistics_warning_title">Tudnivalók</string>
-    <string name="anonymous_statistics_warning">A CyanogenMod statisztika engedélyezése nem terjed ki személyes adatokra, ezért egy egyedi azonosítóval azonosítjuk az eszközöket. Az adat minden telefon indulás után kerül elküldésre, hogy követni tudjuk az új installokat.\n\nAz elküldött adatok menüpont alatt láthatod a statisztikai adatokat.</string>
-    <string name="enable_reporting_title">Statisztika engedélyezése</string>
-    <string name="preview_data_title">Elküldött adatok</string>
-    <string name="preview_data_summary">%s</string>
-    <string name="view_stats_title">Statisztika megtekintése</string>
-    <string name="anonymous_learn_more">Tudj meg többet</string>
+
     <!-- Display : Rotation #CM -->
     <string name="display_rotation_title">Képernyő elforgatás</string>
     <string name="display_rotation_enabled">Engedélyezve</string>

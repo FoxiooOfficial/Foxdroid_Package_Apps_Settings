@@ -1789,28 +1789,6 @@
     <!-- About device screen, list item summary. Takes the user to the screen about how to donate to the CyanogenMod Project. -->
     <string name="donate_settings_summary">""</string>
 
-    <!-- Anonymous Statistics #CM -->
-    <!-- About device screen, list item title. Takes the user to the screen about opting in or out of anonymous statistics. -->
-    <string name="anonymous_statistics_title">CyanogenMod 통계</string>
-    <string name="anonymous_statistics_summary">익명 통계에 참가하여 CyanogenMod를 더 잘 만들 수 있도록 도와줄 수 있습니다.</string>
-    <string name="anonymous_statistics_warning_title">안내</string>
-    <string name="anonymous_statistics_warning">CyanogenMod 익명 통계에 참가하여 비개인 데이터가 CyanogenMod의 개발자들에게 전송되어 장치별 설치를 추적할 수 있습니다. 이 데이터는 고유한 식별자를 포함하지만 개인 사생활 정보를 가지고 있지는 않습니다. 이 정보는 장치를 켤 때마다 전송됩니다.\n\n전송되는 데이터의 예제를 보려면 아래의 미리보기 버튼을 선택십시오.</string>
-    <string name="enable_reporting_title">전송 사용</string>
-    <string name="preview_data_title">미리보기</string>
-    <string name="preview_data_summary">%s</string>
-    <string name="view_stats_title">통계 보기</string>
-    <string name="anonymous_learn_more">자세히 보기</string>
-
-    <!-- Anonymous Statistics - Notification -->
-    <string name="anonymous_notification_desc">CyanogenMod 통계를 활성화하거나 비활성화하십시오</string>
-
-    <!-- Anonymous Statistics - Preview -->
-    <string name="preview_id_title">고유 ID</string>
-    <string name="preview_device_title">장치</string>
-    <string name="preview_version_title">버전</string>
-    <string name="preview_country_title">국가</string>
-    <string name="preview_carrier_title">통신사</string>
-
     <!-- About device screen, version of modification of Android. -->
     <string name="mod_version">CyanogenMod 버전</string>
     <string name="mod_version_default">알 수 없음</string>

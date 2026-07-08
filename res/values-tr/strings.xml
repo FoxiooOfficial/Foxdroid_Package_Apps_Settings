@@ -2007,28 +2007,6 @@
     <string name="donate_settings_title">Bağış Yap</string>
     <string name="donate_settings_summary">""</string>
 
-    <!-- Anonymous Statistics #CM -->
-    <string name="anonymous_statistics_title">CyanogenMod İstatistikleri</string>
-    <string name="anonymous_statistics_summary">Anonim istatistik raporlamaya katılarak CM\'nin daha iyi olmasına katkıda bulunun</string>
-    <string name="anonymous_statistics_warning_title">Hakkında</string>
-    <string name="anonymous_statistics_warning">İsteğe bağlı anonim verilerin etkinleştirilmesi,
-    hangi cihazın hangi sürümü kullandığı gibi bilgileri
-    CyanogenMod geliştiricilerinin izlemesine izin vererek gönderir.
-    Gönderilen bilgi sadece benzersiz kimliktir, gizliliğinizi
-    ortaya çıkaran bilgiler iletilmez.
-    Veri, cihaz her açıldığında gönderilir. Gönderilen verilerin
-    örneğine aşağıdaki Verileri Önizle düğmesine tıklayarak bakabilirsiniz.</string>
-    <string name="enable_reporting_title">Raporlamayı Etkinleştir</string>
-    <string name="preview_data_title">Verileri Önizle</string>
-    <string name="preview_data_summary">%s</string>
-    <string name="view_stats_title">İstatistiklere Bak</string>
-    <string name="anonymous_learn_more">Daha Fazlasını Öğrenin</string>
-    <string name="anonymous_notification_desc">CyanogenMod İstatistiklerini aç veya kapat</string>
-    <string name="preview_id_title">Benzersiz Kimlik</string>
-    <string name="preview_device_title">Cihaz</string>
-    <string name="preview_version_title">Sürüm</string>
-    <string name="preview_country_title">Ülke</string>
-    <string name="preview_carrier_title">Şebeke</string>
 
     <!-- Display : Rotation #CM -->
     <string name="display_rotation_title">Döndürme</string>

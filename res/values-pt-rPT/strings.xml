@@ -1938,29 +1938,6 @@
     <!-- About device screen, list item summary. Takes the user to the screen about how to donate to the CyanogenMod Project. -->
     <string name="donate_settings_summary">""</string>
 
-    <!-- Anonymous Statistics #CM -->
-    <!-- About device screen, list item title. Takes the user to the screen about opting in or out of anonymous statistics. -->
-    <string name="anonymous_statistics_title">Estatísticas CyanogenMod</string>
-    <string name="anonymous_statistics_summary">Ajude a melhorar o CyanogenMod optando por enviar estatísticas anónimas</string>
-    <string name="anonymous_statistics_warning_title">Sobre</string>
-    <string name="anonymous_statistics_warning">Optar por enviar estatísticas anonimas do CyanogenMod permitirá que dados não-pessoais sejam enviados para os
-        desenvolvedores do CyanogenMod para contar instalações únicas em dispositivos. As informações enviadas incluem um identificador único,
-        que não compromete sua privacidade ou dados pessoais. Os dados são enviados durante cada inicialização.\n\nPara um exemplo de dados que são enviados, toque em Pré-visualizar Dados.</string>
-    <string name="enable_reporting_title">Activar relatório</string>
-    <string name="preview_data_title">Pré-visualizar dados</string>
-    <string name="preview_data_summary">%s</string>
-    <string name="view_stats_title">Ver estatísticas</string>
-    <string name="anonymous_learn_more">Saiba mais</string>
-
-    <!-- Anonymous Statistics - Notification -->
-    <string name="anonymous_notification_desc">Activar ou desactivar estatísticas CyanogenMod</string>
-
-    <!-- Anonymous Statistics - Preview -->
-    <string name="preview_id_title">ID unico</string>
-    <string name="preview_device_title">Dispositivo</string>
-    <string name="preview_version_title">Versão</string>
-    <string name="preview_country_title">País</string>
-    <string name="preview_carrier_title">Operadora</string>
 
     <!-- Display : Rotation #CM -->
     <string name="display_rotation_title">Rotação</string>
