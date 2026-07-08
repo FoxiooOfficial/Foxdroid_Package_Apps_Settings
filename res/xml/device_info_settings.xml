@@ -143,6 +143,12 @@
                 android:title="@string/mem_info"
                 android:summary="@string/device_info_default"/>
 
+        <!-- Foxdroid version -->
+        <Preference android:key="foxdroid_build_version"
+                style="?android:preferenceInformationStyle"
+                android:title="@string/foxdroid_build_version"
+                android:summary="@string/foxdroid_build_version_default" />
+
         <!-- Mod version -->
         <Preference android:key="mod_version"
                 style="?android:preferenceInformationStyle"

@@ -65,6 +65,8 @@ public class DeviceInfoSettings extends SettingsPreferenceFragment {
     private static final String KEY_DEVICE_CPU = "device_cpu";
     private static final String KEY_DEVICE_MEMORY = "device_memory";
 
+    private static final String KEY_FOXDROID_BUILD_VERSION = "foxdroid_build_version";
+
     private static final String KEY_MOD_VERSION = "mod_version";
     private static final String KEY_MOD_BUILD_DATE = "build_date";
 
@@ -84,6 +86,7 @@ public class DeviceInfoSettings extends SettingsPreferenceFragment {
         setStringSummary(KEY_DEVICE_MODEL, Build.MODEL + getMsvSuffix());
         setStringSummary(KEY_BUILD_NUMBER, Build.DISPLAY);
         findPreference(KEY_KERNEL_VERSION).setSummary(getFormattedKernelVersion());
+        setValueSummary(KEY_FOXDROID_BUILD_VERSION, "ro.fox.version");
         setValueSummary(KEY_MOD_VERSION, "ro.cm.version");
         setValueSummary(KEY_MOD_BUILD_DATE, "ro.build.date");
 
