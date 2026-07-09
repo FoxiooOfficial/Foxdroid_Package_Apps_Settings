@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.settings.deviceinfo;
+package com.android.settings.aboutdevice;
 
 import android.app.AlertDialog;
 import android.app.Dialog;

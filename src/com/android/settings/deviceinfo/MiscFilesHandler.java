@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.settings.deviceinfo;
+package com.android.settings.aboutdevice;
 
 import android.app.Activity;
 import android.app.ListActivity;
@@ -39,7 +39,7 @@ import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.ListView;
 
 import com.android.settings.R;
-import com.android.settings.deviceinfo.StorageMeasurement.FileInfo;
+import com.android.settings.aboutdevice.StorageMeasurement.FileInfo;
 
 import java.io.File;
 import java.util.ArrayList;

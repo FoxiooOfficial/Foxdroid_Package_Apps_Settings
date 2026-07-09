@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.settings.deviceinfo;
+package com.android.settings.aboutdevice;
 
 import android.app.DownloadManager;
 import android.content.Context;
@@ -33,7 +33,7 @@ import android.preference.PreferenceCategory;
 import android.text.format.Formatter;
 
 import com.android.settings.R;
-import com.android.settings.deviceinfo.StorageMeasurement.MeasurementReceiver;
+import com.android.settings.aboutdevice.StorageMeasurement.MeasurementReceiver;
 
 import java.util.HashSet;
 import java.util.Set;

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.settings.deviceinfo;
+package com.android.settings.aboutdevice;
 
 import android.bluetooth.BluetoothAdapter;
 import android.content.BroadcastReceiver;
@@ -183,7 +183,7 @@ public class Status extends PreferenceActivity {
 
         mTelephonyManager = (TelephonyManager)getSystemService(TELEPHONY_SERVICE);
 
-        addPreferencesFromResource(R.xml.device_info_status);
+        addPreferencesFromResource(R.xml.system_aboutdevice_status);
         mBatteryLevel = findPreference(KEY_BATTERY_LEVEL);
         mBatteryStatus = findPreference(KEY_BATTERY_STATUS);
 

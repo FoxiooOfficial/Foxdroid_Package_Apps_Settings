@@ -571,17 +571,32 @@
                 android:resource="@id/dock_settings" />
         </activity-alias>
 
-        <activity android:name="Settings$DeviceInfoSettingsActivity"
+        <activity android:name="Settings$System_AboutDeviceActivity"
                 android:theme="@android:style/Theme.Holo.DialogWhenLarge"
-                android:label="@string/device_info_settings">
+                android:label="@string/system_aboutdevice">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-                <action android:name="android.settings.DEVICE_INFO_SETTINGS" />
+                <action android:name="android.settings.system_aboutdevice" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.VOICE_LAUNCH" />
             </intent-filter>
             <meta-data android:name="com.android.settings.FRAGMENT_CLASS"
-                android:value="com.android.settings.DeviceInfoSettings" />
+                android:value="com.android.settings.System_AboutDevice" />
+            <meta-data android:name="com.android.settings.TOP_LEVEL_HEADER_ID"
+                android:resource="@id/about_settings" />
+        </activity>
+
+            <activity android:name="Settings$System_AboutDevice_UpdatesAndChangelogActivity"
+                android:theme="@android:style/Theme.Holo.DialogWhenLarge"
+                android:label="@string/system_aboutdevice_updatesandchangelog_title">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.settings.System_AboutDevice_UpdatesAndChangelog" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.VOICE_LAUNCH" />
+            </intent-filter>
+            <meta-data android:name="com.android.settings.FRAGMENT_CLASS"
+                android:value="com.android.settings.System_AboutDevice_UpdatesAndChangelog" />
             <meta-data android:name="com.android.settings.TOP_LEVEL_HEADER_ID"
                 android:resource="@id/about_settings" />
         </activity>
@@ -913,7 +928,7 @@
         <activity android:name="ChooseLockPatternTutorial" android:exported="false"/>
 
         <!-- Runs in the phone process since it needs access to the Phone object -->
-        <activity android:name=".deviceinfo.Status"
+        <activity android:name=".aboutdevice.Status"
                 android:label="@string/device_status_activity_title"
                 android:theme="@android:style/Theme.Holo.DialogWhenLarge"
                 android:process="com.android.phone">
@@ -934,12 +949,12 @@
                 <category android:name="android.intent.category.VOICE_LAUNCH" />
             </intent-filter>
             <meta-data android:name="com.android.settings.FRAGMENT_CLASS"
-                android:value="com.android.settings.deviceinfo.Memory" />
+                android:value="com.android.settings.aboutdevice.Memory" />
             <meta-data android:name="com.android.settings.TOP_LEVEL_HEADER_ID"
                 android:resource="@id/storage_settings" />
         </activity>
 
-        <activity android:name=".deviceinfo.MiscFilesHandler"
+        <activity android:name=".aboutdevice.MiscFilesHandler"
                 android:theme="@android:style/Theme.Holo.DialogWhenLarge"/>
 
         <activity android:name="Settings$ApnEditorActivity"
@@ -1023,7 +1038,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
             <meta-data android:name="com.android.settings.FRAGMENT_CLASS"
-                android:value="com.android.settings.deviceinfo.UsbSettings" />
+                android:value="com.android.settings.aboutdevice.UsbSettings" />
             <meta-data android:name="com.android.settings.TOP_LEVEL_HEADER_ID"
                 android:resource="@id/storage_settings" />
             <meta-data android:name="com.android.settings.PARENT_FRAGMENT_TITLE"
@@ -1039,7 +1054,7 @@
                   android:label="@string/storage_title_usb"
                   android:targetActivity="Settings$DevelopmentSettingsActivity">
             <meta-data android:name="com.android.settings.FRAGMENT_CLASS"
-                android:value="com.android.settings.deviceinfo.UsbSettings" />
+                android:value="com.android.settings.aboutdevice.UsbSettings" />
             <meta-data android:name="com.android.settings.TOP_LEVEL_HEADER_ID"
                 android:resource="@id/storage_settings" />
             <meta-data android:name="com.android.settings.PARENT_FRAGMENT_TITLE"

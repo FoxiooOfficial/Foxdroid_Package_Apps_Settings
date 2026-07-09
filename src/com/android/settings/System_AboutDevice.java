@@ -40,9 +40,9 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class DeviceInfoSettings extends SettingsPreferenceFragment {
+public class System_AboutDevice extends SettingsPreferenceFragment {
 
-    private static final String LOG_TAG = "DeviceInfoSettings";
+    private static final String LOG_TAG = "System_AboutDevice";
 
     private static final String FILENAME_PROC_VERSION = "/proc/version";
     private static final String FILENAME_MSV = "/sys/board_properties/soc/msv";
@@ -55,7 +55,6 @@ public class DeviceInfoSettings extends SettingsPreferenceFragment {
     private static final String KEY_TERMS = "terms";
     private static final String KEY_LICENSE = "license";
     private static final String KEY_COPYRIGHT = "copyright";
-    private static final String KEY_SYSTEM_UPDATE_SETTINGS = "system_update_settings";
     private static final String PROPERTY_URL_SAFETYLEGAL = "ro.url.safetylegal";
     private static final String KEY_KERNEL_VERSION = "kernel_version";
     private static final String KEY_BUILD_NUMBER = "build_number";
@@ -70,15 +69,13 @@ public class DeviceInfoSettings extends SettingsPreferenceFragment {
     private static final String KEY_MOD_VERSION = "mod_version";
     private static final String KEY_MOD_BUILD_DATE = "build_date";
 
-    private static final String KEY_UPDATE_SETTING = "additional_system_update_settings";
-
     long[] mHits = new long[3];
 
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
 
-        addPreferencesFromResource(R.xml.device_info_settings);
+        addPreferencesFromResource(R.xml.system_aboutdevice);
 
         setStringSummary(KEY_FIRMWARE_VERSION, Build.VERSION.RELEASE);
         findPreference(KEY_FIRMWARE_VERSION).setEnabled(true);
@@ -132,18 +129,8 @@ public class DeviceInfoSettings extends SettingsPreferenceFragment {
 
         // These are contained by the root preference screen
         parentPreference = getPreferenceScreen();
-        Utils.updatePreferenceToSpecificActivityOrRemove(act, parentPreference,
-                KEY_SYSTEM_UPDATE_SETTINGS,
-                Utils.UPDATE_PREFERENCE_FLAG_SET_TITLE_TO_MATCHING_ACTIVITY);
         Utils.updatePreferenceToSpecificActivityOrRemove(act, parentPreference, KEY_CONTRIBUTORS,
                 Utils.UPDATE_PREFERENCE_FLAG_SET_TITLE_TO_MATCHING_ACTIVITY);
-
-        // Read platform settings for additional system update setting
-        boolean isUpdateSettingAvailable =
-                getResources().getBoolean(R.bool.config_additional_system_update_setting_enable);
-        if (isUpdateSettingAvailable == false) {
-            getPreferenceScreen().removePreference(findPreference(KEY_UPDATE_SETTING));
-        }
     }
 
     @Override

@@ -17,12 +17,13 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
         android:title="@string/about_settings">
 
-        <!-- System update settings - launches activity -->
-        <PreferenceScreen android:key="additional_system_update_settings"
-                          android:title="@string/additional_system_update_settings_list_item_title">
+        <!-- Updates and Changelog - launches activity -->
+        <PreferenceScreen android:key="updates_changelog"
+                android:title="@string/system_aboutdevice_updatesandchangelog_title" 
+                android:summary="@string/system_aboutdevice_updatesandchangelog_summary">
             <intent android:action="android.intent.action.MAIN"
-                    android:targetPackage="@string/additional_system_update"
-                    android:targetClass="@string/additional_system_update_menu" />
+                    android:targetPackage="com.android.settings"
+                    android:targetClass="com.android.settings.Settings$System_AboutDevice_UpdatesAndChangelogActivity" />
         </PreferenceScreen>
 
         <!-- Device status - launches activity -->
@@ -31,15 +32,7 @@
                 android:summary="@string/device_status_summary">
             <intent android:action="android.intent.action.MAIN"
                     android:targetPackage="com.android.settings"
-                    android:targetClass="com.android.settings.deviceinfo.Status" />
-        </PreferenceScreen>
-
-        <!-- Change Log -->
-        <PreferenceScreen android:key="changelog"
-                android:title="@string/changelog_title">
-            <intent android:action="android.intent.action.MAIN"
-                    android:targetPackage="com.android.settings"
-                    android:targetClass="com.android.settings.cyanogenmod.ChangeLog" />
+                    android:targetClass="com.android.settings.aboutdevice.Status" />
         </PreferenceScreen>
 
         <!-- Legal Information -->

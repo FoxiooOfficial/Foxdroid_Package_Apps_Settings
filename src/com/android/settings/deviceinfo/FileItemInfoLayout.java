@@ -1,6 +1,6 @@
 // Copyright 2011 Google Inc. All Rights Reserved.
 
-package com.android.settings.deviceinfo;
+package com.android.settings.aboutdevice;
 
 import com.android.settings.R;
 

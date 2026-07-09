@@ -111,7 +111,7 @@
     <!-- Storage -->
     <header
         android:id="@+id/storage_settings"
-        android:fragment="com.android.settings.deviceinfo.Memory"
+        android:fragment="com.android.settings.aboutdevice.Memory"
         android:icon="@drawable/ic_settings_storage"
         android:title="@string/storage_settings" />
 
@@ -236,7 +236,7 @@
     <!-- About Device -->
     <header
         android:id="@+id/about_settings"
-        android:fragment="com.android.settings.DeviceInfoSettings"
+        android:fragment="com.android.settings.System_AboutDevice"
         android:icon="@drawable/ic_settings_about"
         android:title="@string/about_settings" />
 
