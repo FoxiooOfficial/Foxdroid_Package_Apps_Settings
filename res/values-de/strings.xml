@@ -2214,7 +2214,7 @@ ice shows the slider widgets before the unlock option [CHAR LIMIT=28]-->
     <string name="ime_switcher_notify_summary">Benachrichtigung zur Auswahl der Eingabemethode in der Statusleiste anzeigen</string>
 
     <!-- Change Log strings -->
-    <string name="changelog_title">Changelog anzeigen</string>
+    <string name="changelog_title_cm">Changelog anzeigen</string>
     <string name="changelog_dialog">Changelog</string>
     <string name="changelog_loading">Changelog wird geladen...</string>
     <string name="changelog_error">Changelog kann nicht geladen werden</string>

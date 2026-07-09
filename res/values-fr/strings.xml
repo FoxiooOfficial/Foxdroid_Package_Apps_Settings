@@ -1202,7 +1202,7 @@
     <string name="donate_settings_summary">""</string>
 
     <!-- Change Log strings -->
-    <string name="changelog_title">Voir changelog</string>
+    <string name="changelog_title_cm">Voir changelog</string>
     <string name="changelog_dialog">Changelog</string>
     <string name="changelog_loading">Chargement du changelog...</string>
     <string name="changelog_error">Impossible de charger le changelog</string>

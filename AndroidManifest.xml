@@ -1390,7 +1390,13 @@
 
         <activity android:name=".cyanogenmod.Calendar" />
 
-        <activity android:name=".cyanogenmod.ChangeLog" android:label="@string/changelog_title">
+        <activity android:name=".cyanogenmod.ChangeLog" android:label="@string/changelog_title_cm">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".foxdroid.ChangeLog" android:label="@string/changelog_title_foxdroid">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
             </intent-filter>

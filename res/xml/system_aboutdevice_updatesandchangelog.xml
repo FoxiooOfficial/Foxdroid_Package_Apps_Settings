@@ -25,9 +25,17 @@
                     android:targetClass="@string/additional_system_update_menu" />
         </PreferenceScreen>
 
-        <!-- Change Log -->
-        <PreferenceScreen android:key="changelog"
-                android:title="@string/changelog_title">
+        <!-- Change Log Foxdroid -->
+        <PreferenceScreen android:key="changelog_fox"
+                android:title="@string/changelog_title_foxdroid">
+            <intent android:action="android.intent.action.MAIN"
+                    android:targetPackage="com.android.settings"
+                    android:targetClass="com.android.settings.foxdroid.ChangeLog" />
+        </PreferenceScreen>
+
+        <!-- Change Log CyanogenMod -->
+        <PreferenceScreen android:key="changelog_cm"
+                android:title="@string/changelog_title_cm">
             <intent android:action="android.intent.action.MAIN"
                     android:targetPackage="com.android.settings"
                     android:targetClass="com.android.settings.cyanogenmod.ChangeLog" />

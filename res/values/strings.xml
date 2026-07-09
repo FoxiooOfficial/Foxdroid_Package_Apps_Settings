@@ -1759,7 +1759,7 @@
     <string name="donate_settings_summary">""</string>
 
     <!-- Change Log strings #CM -->
-    <string name="changelog_title">View changelog</string>
+    <string name="changelog_title_cm">View CyanogenMod changelog</string>
     <string name="changelog_dialog">Changelog</string>
     <string name="changelog_loading">Loading changelog...</string>
     <string name="changelog_error">Unable to load changelog</string>
@@ -2790,7 +2790,9 @@
 
                <!-- Acitivty Title -->
                <string name="system_aboutdevice_updatesandchangelog_title">Updates and Changelog</string>
-               <string name="system_aboutdevice_updatesandchangelog_summary">Updates and Changelog</string>
+               <string name="system_aboutdevice_updatesandchangelog_summary">System updates and information about changes</string>
+
+               <string name="changelog_title_foxdroid">View Foxdroid changelog</string>
 
           <!-- About --> <skip />
 
