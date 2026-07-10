@@ -69,7 +69,7 @@ public class System_AboutDevice_SoftwareInformation extends SettingsPreferenceFr
 
         addPreferencesFromResource(R.xml.system_aboutdevice_softwareinformation);
 
-        setStringSummary(KEY_FIRMWARE_VERSION, Build.VERSION.RELEASE + " (Ice Cream Sandwitch)");
+        setStringSummary(KEY_FIRMWARE_VERSION, Build.VERSION.RELEASE + " (Ice Cream Sandwich)");
         findPreference(KEY_FIRMWARE_VERSION).setEnabled(true);
         setValueSummary(KEY_BASEBAND_VERSION, "gsm.version.baseband");
         setStringSummary(KEY_BUILD_NUMBER, Build.DISPLAY);
