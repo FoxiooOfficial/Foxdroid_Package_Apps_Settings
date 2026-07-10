@@ -44,7 +44,6 @@ public class System_AboutDevice extends SettingsPreferenceFragment {
 
     private static final String LOG_TAG = "System_AboutDevice";
 
-    private static final String FILENAME_PROC_VERSION = "/proc/version";
     private static final String FILENAME_MSV = "/sys/board_properties/soc/msv";
     private static final String FILENAME_PROC_MEMINFO = "/proc/meminfo";
     private static final String FILENAME_PROC_CPUINFO = "/proc/cpuinfo";
@@ -56,20 +55,11 @@ public class System_AboutDevice extends SettingsPreferenceFragment {
     private static final String KEY_LICENSE = "license";
     private static final String KEY_COPYRIGHT = "copyright";
     private static final String PROPERTY_URL_SAFETYLEGAL = "ro.url.safetylegal";
-    private static final String KEY_KERNEL_VERSION = "kernel_version";
-    private static final String KEY_BUILD_NUMBER = "build_number";
+
     private static final String KEY_DEVICE_MODEL = "device_model";
-    private static final String KEY_BASEBAND_VERSION = "baseband_version";
-    private static final String KEY_FIRMWARE_VERSION = "firmware_version";
+
     private static final String KEY_DEVICE_CPU = "device_cpu";
     private static final String KEY_DEVICE_MEMORY = "device_memory";
-
-    private static final String KEY_FOXDROID_BUILD_VERSION = "foxdroid_build_version";
-
-    private static final String KEY_MOD_VERSION = "mod_version";
-    private static final String KEY_MOD_BUILD_DATE = "build_date";
-
-    long[] mHits = new long[3];
 
     @Override
     public void onCreate(Bundle icicle) {
@@ -77,15 +67,7 @@ public class System_AboutDevice extends SettingsPreferenceFragment {
 
         addPreferencesFromResource(R.xml.system_aboutdevice);
 
-        setStringSummary(KEY_FIRMWARE_VERSION, Build.VERSION.RELEASE);
-        findPreference(KEY_FIRMWARE_VERSION).setEnabled(true);
-        setValueSummary(KEY_BASEBAND_VERSION, "gsm.version.baseband");
         setStringSummary(KEY_DEVICE_MODEL, Build.MODEL + getMsvSuffix());
-        setStringSummary(KEY_BUILD_NUMBER, Build.DISPLAY);
-        findPreference(KEY_KERNEL_VERSION).setSummary(getFormattedKernelVersion());
-        setValueSummary(KEY_FOXDROID_BUILD_VERSION, "ro.fox.version");
-        setValueSummary(KEY_MOD_VERSION, "ro.cm.version");
-        setValueSummary(KEY_MOD_BUILD_DATE, "ro.build.date");
 
         String cpuInfo = getCPUInfo();
         String memInfo = getMemInfo();
@@ -105,11 +87,6 @@ public class System_AboutDevice extends SettingsPreferenceFragment {
         // Remove Safety information preference if PROPERTY_URL_SAFETYLEGAL is not set
         removePreferenceIfPropertyMissing(getPreferenceScreen(), "safetylegal",
                 PROPERTY_URL_SAFETYLEGAL);
-
-        // Remove Baseband version if wifi-only device
-        if (Utils.isWifiOnly(getActivity())) {
-            getPreferenceScreen().removePreference(findPreference(KEY_BASEBAND_VERSION));
-        }
 
         /*
          * Settings is a generic app and should not contain any device-specific
@@ -131,25 +108,6 @@ public class System_AboutDevice extends SettingsPreferenceFragment {
         parentPreference = getPreferenceScreen();
         Utils.updatePreferenceToSpecificActivityOrRemove(act, parentPreference, KEY_CONTRIBUTORS,
                 Utils.UPDATE_PREFERENCE_FLAG_SET_TITLE_TO_MATCHING_ACTIVITY);
-    }
-
-    @Override
-    public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
-        if (preference.getKey().equals(KEY_FIRMWARE_VERSION)) {
-            System.arraycopy(mHits, 1, mHits, 0, mHits.length-1);
-            mHits[mHits.length-1] = SystemClock.uptimeMillis();
-            if (mHits[0] >= (SystemClock.uptimeMillis()-500)) {
-                Intent intent = new Intent(Intent.ACTION_MAIN);
-                intent.setClassName("android",
-                        com.android.internal.app.PlatLogoActivity.class.getName());
-                try {
-                    startActivity(intent);
-                } catch (Exception e) {
-                    Log.e(LOG_TAG, "Unable to start activity " + intent.toString());
-                }
-            }
-        }
-        return super.onPreferenceTreeClick(preferenceScreen, preference);
     }
 
     private void removePreferenceIfPropertyMissing(PreferenceGroup preferenceGroup,
@@ -175,16 +133,6 @@ public class System_AboutDevice extends SettingsPreferenceFragment {
         }
     }
 
-    private void setValueSummary(String preference, String property) {
-        try {
-            findPreference(preference).setSummary(
-                    SystemProperties.get(property,
-                            getResources().getString(R.string.device_info_default)));
-        } catch (RuntimeException e) {
-            // No recovery
-        }
-    }
-
     /**
      * Reads a line from the specified file.
      * @param filename the file to read from
@@ -197,46 +145,6 @@ public class System_AboutDevice extends SettingsPreferenceFragment {
             return reader.readLine();
         } finally {
             reader.close();
-        }
-    }
-
-    private String getFormattedKernelVersion() {
-        String procVersionStr;
-
-        try {
-            procVersionStr = readLine(FILENAME_PROC_VERSION);
-
-            final String PROC_VERSION_REGEX =
-                "\\w+\\s+" + /* ignore: Linux */
-                "\\w+\\s+" + /* ignore: version */
-                "([^\\s]+)\\s+" + /* group 1: 2.6.22-omap1 */
-                "\\(([^\\s@]+(?:@[^\\s.]+)?)[^)]*\\)\\s+" + /* group 2: (xxxxxx@xxxxx.constant) */
-                "\\((?:[^(]*\\([^)]*\\))?[^)]*\\)\\s+" + /* ignore: (gcc ..) */
-                "([^\\s]+)\\s+" + /* group 3: #26 */
-                "(?:PREEMPT\\s+)?" + /* ignore: PREEMPT (optional) */
-                "(.+)"; /* group 4: date */
-
-            Pattern p = Pattern.compile(PROC_VERSION_REGEX);
-            Matcher m = p.matcher(procVersionStr);
-
-            if (!m.matches()) {
-                Log.e(LOG_TAG, "Regex did not match on /proc/version: " + procVersionStr);
-                return "Unavailable";
-            } else if (m.groupCount() < 4) {
-                Log.e(LOG_TAG, "Regex match on /proc/version only returned " + m.groupCount()
-                        + " groups");
-                return "Unavailable";
-            } else {
-                return (new StringBuilder(m.group(1)).append("\n").append(
-                        m.group(2)).append(" ").append(m.group(3)).append("\n")
-                        .append(m.group(4))).toString();
-            }
-        } catch (IOException e) {
-            Log.e(LOG_TAG,
-                "IO Exception when getting kernel version for Device Info screen",
-                e);
-
-            return "Unavailable";
         }
     }
 

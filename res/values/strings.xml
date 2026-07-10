@@ -2790,9 +2790,15 @@
 
                <!-- Acitivty Title -->
                <string name="system_aboutdevice_updatesandchangelog_title">Updates and Changelog</string>
-               <string name="system_aboutdevice_updatesandchangelog_summary">System updates and information about changes</string>
+               <string name="system_aboutdevice_updatesandchangelog_summary">Update operating system or firmware and information about changes.</string>
 
                <string name="changelog_title_foxdroid">View Foxdroid changelog</string>
+
+          <!-- System / About Device / Software Information -->
+
+               <!-- Acitivty Title -->
+               <string name="system_aboutdevice_softwareinformation_title">Software Information</string>
+               <string name="system_aboutdevice_softwareinformation_summary">Information about firmware versions, kernel versions, etc.</string>
 
           <!-- About --> <skip />
 

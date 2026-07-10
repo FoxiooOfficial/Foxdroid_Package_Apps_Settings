@@ -14,3 +14,4 @@
 
 -keep class com.android.settings.System_AboutDevice
 -keep class com.android.settings.System_AboutDevice_UpdatesAndChangelog
+-keep class com.android.settings.System_AboutDevice_SoftwareInformation
