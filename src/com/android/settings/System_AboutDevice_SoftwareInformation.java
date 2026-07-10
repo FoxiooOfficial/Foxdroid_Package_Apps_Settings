@@ -167,31 +167,38 @@ public class System_AboutDevice_SoftwareInformation extends SettingsPreferenceFr
             procVersionStr = readLine(FILENAME_PROC_VERSION);
 
             final String PROC_VERSION_REGEX =
-                "\\(w+)\\s+" + /* Linux */
+                "(\\w+)\\s+" + /* group 1: Linux */
                 "\\w+\\s+" + /* ignore: version */
-                "([^\\s]+)\\s+" + /* group 1: 2.6.22-omap1 */
-                "\\(([^\\s@]+(?:@[^\\s.]+)?)[^)]*\\)\\s+" + /* group 2: (xxxxxx@xxxxx.constant) */
+                "([^\\s]+)\\s+" + /* group 2: 2.6.22-omap1 */
+                "\\(([^\\s@]+(?:@[^\\s.]+)?)[^)]*\\)\\s+" + /* group 3: (xxxxxx@xxxxx.constant) */
                 "\\((?:[^(]*\\([^)]*\\))?[^)]*\\)\\s+" + /* ignore: (gcc ..) */
-                "([^\\s]+)\\s+" + /* group 3: #26 */
+                "([^\\s]+)\\s+" + /* group 4: #26 */
                 "(?:PREEMPT\\s+)?" + /* ignore: PREEMPT (optional) */
-                "(.+)"; /* group 4: date */
+                "(.+)"; /* group 5: date */
 
             Pattern p = Pattern.compile(PROC_VERSION_REGEX);
             Matcher m = p.matcher(procVersionStr);
 
-            if (!m.matches()) {
+            if (!m.matches())
+            {
                 Log.e(LOG_TAG, "Regex did not match on /proc/version: " + procVersionStr);
                 return "Unavailable";
-            } else if (m.groupCount() < 4) {
+            } 
+            else if (m.groupCount() < 5)
+            {
                 Log.e(LOG_TAG, "Regex match on /proc/version only returned " + m.groupCount()
                         + " groups");
                 return "Unavailable";
-            } else {
-                return (new StringBuilder(m.group(1)).append("\n").append(
-                        m.group(2)).append(" ").append(m.group(3)).append("\n")
-                        .append(m.group(4))).toString();
+            } 
+            else
+            {
+                return (new StringBuilder(m.group(1)).append(" ").append(m.group(2)).append("\n").append(
+                        m.group(3)).append(" ").append(m.group(4)).append("\n")
+                        .append(m.group(5))).toString();
             }
-        } catch (IOException e) {
+        }
+        catch (IOException e) 
+        {
             Log.e(LOG_TAG,
                 "IO Exception when getting kernel version for Device Info screen",
                 e);
