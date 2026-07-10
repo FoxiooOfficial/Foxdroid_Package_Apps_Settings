@@ -167,7 +167,7 @@ public class System_AboutDevice_SoftwareInformation extends SettingsPreferenceFr
             procVersionStr = readLine(FILENAME_PROC_VERSION);
 
             final String PROC_VERSION_REGEX =
-                "\\(w+)\\s+" + /* ignore: Linux */
+                "\\(w+)\\s+" + /* Linux */
                 "\\w+\\s+" + /* ignore: version */
                 "([^\\s]+)\\s+" + /* group 1: 2.6.22-omap1 */
                 "\\(([^\\s@]+(?:@[^\\s.]+)?)[^)]*\\)\\s+" + /* group 2: (xxxxxx@xxxxx.constant) */
