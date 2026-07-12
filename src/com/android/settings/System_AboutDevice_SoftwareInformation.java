@@ -74,7 +74,7 @@ public class System_AboutDevice_SoftwareInformation extends SettingsPreferenceFr
         setValueSummary(KEY_BASEBAND_VERSION, "gsm.version.baseband");
         setStringSummary(KEY_BUILD_NUMBER, Build.DISPLAY);
         findPreference(KEY_KERNEL_VERSION).setSummary(getFormattedKernelVersion());
-        setValueSummary(KEY_FOXDROID_BUILD_VERSION, "ro.fox.version");
+        setStringSummary(KEY_FOXDROID_BUILD_VERSION, SystemProperties.get("ro.fox.version", "unknown") + " (" + SystemProperties.get("ro.fox.version.codename", "unknown") + ")");
         setValueSummary(KEY_MOD_VERSION, "ro.cm.version");
         setValueSummary(KEY_MOD_BUILD_DATE, "ro.build.date");
 
