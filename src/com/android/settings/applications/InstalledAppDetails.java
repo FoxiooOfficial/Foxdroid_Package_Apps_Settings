@@ -115,6 +115,9 @@ public class InstalledAppDetails extends Fragment
     private Button mForceStopButton;
     private Button mClearDataButton;
     private Button mMoveAppButton;
+
+    private Button mRunButton;
+    private Button mEnableDisableButton;
     
     private PackageMoveObserver mPackageMoveObserver;
     
@@ -249,73 +252,145 @@ public class InstalledAppDetails extends Fragment
         boolean dataOnly = false;
         dataOnly = (mPackageInfo == null) && (mAppEntry != null);
         boolean moveDisable = true;
-        if (dataOnly) {
+        if (dataOnly)
+        {
             mMoveAppButton.setText(R.string.move_app);
-        } else if ((mAppEntry.info.flags & ApplicationInfo.FLAG_EXTERNAL_STORAGE) != 0) {
+        } 
+        else if ((mAppEntry.info.flags & ApplicationInfo.FLAG_EXTERNAL_STORAGE) != 0)
+        {
             mMoveAppButton.setText(R.string.move_app_to_internal);
             // Always let apps move to internal storage from sdcard.
             moveDisable = false;
-        } else {
+        } 
+        else
+        {
             mMoveAppButton.setText(R.string.move_app_to_sdcard);
             mCanBeOnSdCardChecker.init();
             moveDisable = !mCanBeOnSdCardChecker.check(mAppEntry.info);
         }
-        if (moveDisable) {
+        if
+        (moveDisable)
+        {
             mMoveAppButton.setEnabled(false);
-        } else {
+        } 
+        else 
+        {
             mMoveAppButton.setOnClickListener(this);
             mMoveAppButton.setEnabled(true);
         }
     }
 
-    private void initUninstallButtons() {
+    private void initDisableEnable()
+    {
         mUpdatedSysApp = (mAppEntry.info.flags & ApplicationInfo.FLAG_UPDATED_SYSTEM_APP) != 0;
+
+        if (mUpdatedSysApp)
+        {
+            mEnableDisableButton.setEnabled(false);
+            return;
+        }
+        if ((mAppEntry.info.flags & ApplicationInfo.FLAG_SYSTEM) == 0)
+        {
+            mEnableDisableButton.setEnabled(false);
+            return;
+        }
+
         boolean enabled = true;
-        if (mUpdatedSysApp) {
-            mUninstallButton.setText(R.string.app_factory_reset);
-        } else {
-            if ((mAppEntry.info.flags & ApplicationInfo.FLAG_SYSTEM) != 0) {
-                enabled = false;
-                if (SUPPORT_DISABLE_APPS) {
-                    try {
-                        // Try to prevent the user from bricking their phone
-                        // by not allowing disabling of apps signed with the
-                        // system cert and any launcher app in the system.
-                        PackageInfo sys = mPm.getPackageInfo("android",
-                                PackageManager.GET_SIGNATURES);
-                        Intent intent = new Intent(Intent.ACTION_MAIN);
-                        intent.addCategory(Intent.CATEGORY_HOME);
-                        intent.setPackage(mAppEntry.info.packageName);
-                        List<ResolveInfo> homes = mPm.queryIntentActivities(intent, 0);
-                        if ((homes != null && homes.size() > 0) ||
-                                (mPackageInfo != null && mPackageInfo.signatures != null &&
-                                        sys.signatures[0].equals(mPackageInfo.signatures[0]))) {
-                            // Disable button for core system applications.
-                            mUninstallButton.setText(R.string.disable_text);
-                        } else if (mAppEntry.info.enabled) {
-                            mUninstallButton.setText(R.string.disable_text);
-                            enabled = true;
-                        } else {
-                            mUninstallButton.setText(R.string.enable_text);
-                            enabled = true;
-                        }
-                    } catch (PackageManager.NameNotFoundException e) {
-                        Log.w(TAG, "Unable to get package info", e);
-                    }
+
+        if (SUPPORT_DISABLE_APPS)
+        {
+            try
+            {
+                PackageInfo sys = mPm.getPackageInfo("android", PackageManager.GET_SIGNATURES);
+                Intent intent = new Intent(Intent.ACTION_MAIN);
+                intent.addCategory(Intent.CATEGORY_HOME);
+                intent.setPackage(mAppEntry.info.packageName);
+                List<ResolveInfo> homes = mPm.queryIntentActivities(intent, 0);
+
+                if ((homes != null && homes.size() > 0) ||
+                        (mPackageInfo != null && mPackageInfo.signatures != null &&
+                                sys.signatures[0].equals(mPackageInfo.signatures[0])))
+                {
+                    mEnableDisableButton.setText(R.string.disable_text);
+                    enabled = false;
                 }
-            } else {
-                mUninstallButton.setText(R.string.uninstall_text);
+                else if (mAppEntry.info.enabled)
+                {
+                    mEnableDisableButton.setText(R.string.disable_text);
+                }
+                else
+                {
+                    mEnableDisableButton.setText(R.string.enable_text);
+                }
+            }
+            catch (PackageManager.NameNotFoundException e)
+            {
+                Log.w(TAG, "Unable to get package info", e);
+                enabled = false;
             }
         }
-        // If this is a device admin, it can't be uninstall or disabled.
-        // We do this here so the text of the button is still set correctly.
-        if (mDpm.packageHasActiveAdmins(mPackageInfo.packageName)) {
+        else
+        {
             enabled = false;
         }
+
+        if (mDpm.packageHasActiveAdmins(mPackageInfo.packageName))
+        {
+            enabled = false;
+        }
+
+        mEnableDisableButton.setEnabled(enabled);
+        if (enabled)
+        {
+            mEnableDisableButton.setOnClickListener(this);
+        }
+    }
+
+    private void initUninstallButtons()
+    {
+        mUpdatedSysApp = (mAppEntry.info.flags & ApplicationInfo.FLAG_UPDATED_SYSTEM_APP) != 0;
+        boolean enabled = true;
+
+        if (mUpdatedSysApp)
+        {
+            mUninstallButton.setText(R.string.app_factory_reset);
+        }
+        else if ((mAppEntry.info.flags & ApplicationInfo.FLAG_SYSTEM) != 0)
+        {
+            mUninstallButton.setText(R.string.uninstall_text);
+            enabled = false;
+        }
+        else
+        {
+            mUninstallButton.setText(R.string.uninstall_text);
+        }
+
+        if (mDpm.packageHasActiveAdmins(mPackageInfo.packageName))
+        {
+            enabled = false;
+        }
+
         mUninstallButton.setEnabled(enabled);
-        if (enabled) {
-            // Register listener
+        if (enabled)
+        {
             mUninstallButton.setOnClickListener(this);
+        }
+    }
+
+    private void initRunButton()
+    {
+        Intent launch = mPm.getLaunchIntentForPackage(mAppEntry.info.packageName);
+        
+        if (launch != null && mAppEntry.info.enabled)
+        {
+            mRunButton.setVisibility(View.VISIBLE);
+            mRunButton.setText(R.string.launch_text);
+            mRunButton.setEnabled(true);
+            mRunButton.setOnClickListener(this);
+        } 
+        else 
+        {
+            mRunButton.setEnabled(false);
         }
     }
 
@@ -334,7 +409,8 @@ public class InstalledAppDetails extends Fragment
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+    {
         View view = mRootView = inflater.inflate(R.layout.installed_app_details, null);
         
         mComputingStr = getActivity().getText(R.string.computing_size);
@@ -345,13 +421,23 @@ public class InstalledAppDetails extends Fragment
         mDataSize = (TextView)view.findViewById(R.id.data_size_text);
         mExternalCodeSize = (TextView)view.findViewById(R.id.external_code_size_text);
         mExternalDataSize = (TextView)view.findViewById(R.id.external_data_size_text);
-        
+
         // Get Control button panel
-        View btnPanel = view.findViewById(R.id.control_buttons_panel);
-        mForceStopButton = (Button) btnPanel.findViewById(R.id.left_button);
-        mForceStopButton.setText(R.string.force_stop);
-        mUninstallButton = (Button)btnPanel.findViewById(R.id.right_button);
-        mForceStopButton.setEnabled(false);
+            View btnPanel_top = view.findViewById(R.id.control_buttons_run_and_disable);
+
+                mRunButton = (Button) btnPanel_top.findViewById(R.id.left_button);
+                mEnableDisableButton = (Button) btnPanel_top.findViewById(R.id.right_button);
+
+                mRunButton.setText(R.string.launch_text);
+                mEnableDisableButton.setEnabled(false);
+
+            View btnPanel_bottom = view.findViewById(R.id.control_buttons_panel);
+
+                mForceStopButton = (Button) btnPanel_bottom.findViewById(R.id.left_button);
+                mUninstallButton = (Button) btnPanel_bottom.findViewById(R.id.right_button);
+                
+                mForceStopButton.setText(R.string.force_stop);
+                mForceStopButton.setEnabled(false);
         
         // Initialize clear data and move install location buttons
         View data_buttons_panel = view.findViewById(R.id.data_buttons_panel);
@@ -373,22 +459,33 @@ public class InstalledAppDetails extends Fragment
     }
 
     // Utility method to set applicaiton label and icon.
-    private void setAppLabelAndIcon(PackageInfo pkgInfo) {
+    private void setAppLabelAndIcon(PackageInfo pkgInfo)
+    {
         View appSnippet = mRootView.findViewById(R.id.app_snippet);
         ImageView icon = (ImageView) appSnippet.findViewById(R.id.app_icon);
+
         mState.ensureIcon(mAppEntry);
         icon.setImageDrawable(mAppEntry.icon);
-        // Set application name.
-        TextView label = (TextView) appSnippet.findViewById(R.id.app_name);
-        label.setText(mAppEntry.label);
-        // Version number of application
-        mAppVersion = (TextView) appSnippet.findViewById(R.id.app_size);
 
-        if (pkgInfo != null && pkgInfo.versionName != null) {
+            // Set application name.
+            TextView label = (TextView) appSnippet.findViewById(R.id.app_name);
+            label.setText(mAppEntry.label);
+
+            // Version number of application
+            mAppVersion = (TextView) appSnippet.findViewById(R.id.app_size);
+
+        if (pkgInfo != null && pkgInfo.versionName != null)
+        {
             mAppVersion.setVisibility(View.VISIBLE);
-            mAppVersion.setText(getActivity().getString(R.string.version_text,
-                    String.valueOf(pkgInfo.versionName)));
-        } else {
+
+            String mAppPackageText = pkgInfo.packageName;
+            String mAppVersionText = getActivity().getString(R.string.version_text, String.valueOf(pkgInfo.versionName));
+
+            /* com.foxioo.app */
+            /* version 1.0.0  */ 
+            mAppVersion.setText(mAppPackageText + "\n" + mAppVersionText);
+        }
+        else {
             mAppVersion.setVisibility(View.INVISIBLE);
         }
     }
@@ -612,8 +709,10 @@ public class InstalledAppDetails extends Fragment
     private void refreshButtons() {
         if (!mMoveInProgress) {
             initUninstallButtons();
+            initDisableEnable();
             initDataButtons();
             initMoveButton();
+            initRunButton();
         } else {
             mMoveAppButton.setText(R.string.moving);
             mMoveAppButton.setEnabled(false);
@@ -859,59 +958,110 @@ public class InstalledAppDetails extends Fragment
      * Method implementing functionality of buttons clicked
      * @see android.view.View.OnClickListener#onClick(android.view.View)
      */
-    public void onClick(View v) {
+    public void onClick(View v)
+    {
         String packageName = mAppEntry.info.packageName;
-        if(v == mUninstallButton) {
-            if (mUpdatedSysApp) {
+        if(v == mUninstallButton)
+        {
+            if (mUpdatedSysApp)
+            {
                 showDialogInner(DLG_FACTORY_RESET, 0);
-            } else {
-                if ((mAppEntry.info.flags & ApplicationInfo.FLAG_SYSTEM) != 0) {
-                    if (mAppEntry.info.enabled) {
-                        showDialogInner(DLG_DISABLE, 0);
-                    } else {
-                        new DisableChanger(this, mAppEntry.info,
-                                PackageManager.COMPONENT_ENABLED_STATE_DEFAULT)
-                        .execute((Object)null);
-                    }
-                } else {
+            }
+            else
+            {
+                if ((mAppEntry.info.flags & ApplicationInfo.FLAG_SYSTEM) == 0)
+                {
                     uninstallPkg(packageName);
                 }
             }
-        } else if(v == mActivitiesButton) {
+        } 
+
+        if(v == mEnableDisableButton)
+        {
+            if ((mAppEntry.info.flags & ApplicationInfo.FLAG_SYSTEM) != 0)
+            {
+                if (mAppEntry.info.enabled)
+                {
+                    showDialogInner(DLG_DISABLE, 0);
+                }
+                else
+                {
+                    new DisableChanger(this, mAppEntry.info,
+                             PackageManager.COMPONENT_ENABLED_STATE_DEFAULT)
+                    .execute((Object)null);
+                }
+            }
+        } 
+
+        else if(v == mActivitiesButton)
+        {
             mPm.clearPackagePreferredActivities(packageName);
-            try {
+
+            try
+            {
                 mUsbManager.clearDefaults(packageName);
-            } catch (RemoteException e) {
+            }
+            catch (RemoteException e)
+            {
                 Log.e(TAG, "mUsbManager.clearDefaults", e);
             }
+
             mActivitiesButton.setEnabled(false);
-        } else if(v == mClearDataButton) {
-            if (mAppEntry.info.manageSpaceActivityName != null) {
+        }
+
+        else if(v == mClearDataButton)
+        {
+            if (mAppEntry.info.manageSpaceActivityName != null)
+            {
                 Intent intent = new Intent(Intent.ACTION_DEFAULT);
                 intent.setClassName(mAppEntry.info.packageName,
                         mAppEntry.info.manageSpaceActivityName);
                 startActivityForResult(intent, -1);
-            } else {
+            }
+            else
+            {
                 showDialogInner(DLG_CLEAR_DATA, 0);
             }
-        } else if (v == mClearCacheButton) {
+        }
+
+        else if (v == mClearCacheButton)
+        {
             // Lazy initialization of observer
-            if (mClearCacheObserver == null) {
+            if (mClearCacheObserver == null)
+            {
                 mClearCacheObserver = new ClearCacheObserver();
             }
             mPm.deleteApplicationCacheFiles(packageName, mClearCacheObserver);
-        } else if (v == mForceStopButton) {
+        }
+
+        else if (v == mForceStopButton)
+        {
             showDialogInner(DLG_FORCE_STOP, 0);
             //forceStopPackage(mAppInfo.packageName);
-        } else if (v == mMoveAppButton) {
-            if (mPackageMoveObserver == null) {
+        }
+
+        else if (v == mMoveAppButton)
+        {
+            if (mPackageMoveObserver == null)
+            {
                 mPackageMoveObserver = new PackageMoveObserver();
             }
+
             int moveFlags = (mAppEntry.info.flags & ApplicationInfo.FLAG_EXTERNAL_STORAGE) != 0 ?
                     PackageManager.MOVE_INTERNAL : PackageManager.MOVE_EXTERNAL_MEDIA;
             mMoveInProgress = true;
+
             refreshButtons();
             mPm.movePackage(mAppEntry.info.packageName, mPackageMoveObserver, moveFlags);
+        }
+
+        else if (v == mRunButton)
+        {
+            Intent launchIntent = mPm.getLaunchIntentForPackage(packageName);
+            if (launchIntent != null)
+            {
+                startActivity(launchIntent);
+            }
         }
     }
 

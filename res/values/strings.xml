@@ -3101,6 +3101,9 @@ found in the list of installed apps.</string>
     <string name="security_settings_desc" product="default">This app can access the following on your phone:</string>
     <string name="computing_size">Computing\u2026</string>
     <string name="invalid_size_value">Unable to compute package size</string>
+
+     <string name="launch_text">Launch app</string>
+
     <!-- String displayed when list is empty -->
     <string name="empty_list_msg">You don\'t have any third-party apps installed.</string>
     <!-- Manage applications, version string displayed in app snippet -->

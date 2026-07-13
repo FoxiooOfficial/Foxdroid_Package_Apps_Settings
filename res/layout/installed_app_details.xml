@@ -46,7 +46,12 @@
                 layout="@layout/manage_applications_item"
                 android:id="@+id/app_snippet"/>
 
-            <!-- Force stop and uninstall buttons -->
+            <!-- Run application and disable/enable // TOP -->
+            <include
+                layout="@layout/two_buttons_panel"
+                android:id="@+id/control_buttons_run_and_disable"/>
+
+            <!-- Force stop and uninstall buttons // BOTTOM -->
             <include
                 layout="@layout/two_buttons_panel"
                 android:id="@+id/control_buttons_panel"/>
